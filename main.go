@@ -28,12 +28,9 @@ func main() {
 
 	// send webhooks
 	for _, item := range filteredItems {
-		// if err := webHookSend(webhookURL, item.Title, item.Link); err != nil {
-		// 	fmt.Println(err)
-		// }
-
-		fmt.Println(item.Title, item.Published)
-
+		if err := webHookSend(conf.WebHookURL, item.Title, item.Link); err != nil {
+			fmt.Println(err)
+		}
 	}
 
 	// refresh date_since
