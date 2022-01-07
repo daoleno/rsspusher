@@ -84,6 +84,9 @@ func fetchFeedItems(urls []string) []*gofeed.Item {
 func sortItems(items []*gofeed.Item) {
 	// sort items by PublishedParsed
 	sort.SliceStable(items, func(i int, j int) bool {
+		if items[i].PublishedParsed == nil {
+			return false
+		}
 		return items[i].PublishedParsed.After(*items[j].PublishedParsed)
 	})
 }
@@ -96,7 +99,7 @@ func filterItems(items []*gofeed.Item, dateSince string) []*gofeed.Item {
 	}
 	var filteredItems []*gofeed.Item
 	for _, item := range items {
-		if !item.PublishedParsed.After(dateSinceParsed) {
+		if item.PublishedParsed == nil || !item.PublishedParsed.After(dateSinceParsed) {
 			continue
 		}
 		filteredItems = append(filteredItems, item)
