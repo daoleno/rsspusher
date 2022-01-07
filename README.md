@@ -1,6 +1,6 @@
 # RSSPusher
 
-Pushes RSS feeds to through webhooks.
+Fetch and Push rss feeds through webhook.
 
 ## Installation
 
