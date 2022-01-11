@@ -67,6 +67,7 @@ func fetchFeedItems(urls []string) []*gofeed.Item {
 			feed, err := fp.ParseURL(url)
 			if err != nil {
 				fmt.Println(err)
+				items <- nil
 				return
 			}
 			items <- feed.Items
